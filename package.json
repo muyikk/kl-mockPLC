@@ -1,0 +1,18 @@
+{
+	"name": "kl-mockplc",
+	"version": "1.0.0",
+	"main": "index.js",
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"fs-extra": "^11.2.0",
+		"json5": "^2.2.3",
+		"modbus-serial": "^8.0.17",
+		"node-opcua": "^2.133.0"
+	}
+}
