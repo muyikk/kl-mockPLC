@@ -53,3 +53,9 @@ plc模拟服务器v1.0.0
 
 ```
 2、将mockPLC.json文件放入可执行文件.exe的同级目录下，启动.exe文件
+
+**注:如果缺少凭证文件`privateKey.pem`和`certificate.pem`，会提示报错<br>可以选择执行以下代码重新生成自签名证书和私钥**
+```bash
+openssl req -x509 -newkey rsa:2048 -keyout privateKey.pem -out certificate.pem -days 365 -nodes
+```
+(可以一直回车跳过)
