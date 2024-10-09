@@ -3,28 +3,32 @@
 	"port": "4334",
 	"structure": "stCCD1",
 	"params": {
-		"iCCDHeart": {"type":"Int16", "value":1},
-		"iState": {"type":"Int16", "value":1},
-		"iWarning": {"type":"Int16", "value":1},
-		"rStopMaterial": {"type":"Double", "value":1.5},
-		"iSendPosition": {"type":"Int16", "value":1},
-		"iCellstate": {"type":"Int16", "value":1},
-		"iTimeout": {"type":"Int16", "value":1},
-		"inCrease": {"type":"Int16", "value":1},
-		"deCrease": {"type":"Int16", "value":1}
+		"iCCDHeart": { "type": "Int16", "value": 1 },
+		"iState": { "type": "Int16", "value": 1 },
+		"iWarning": { "type": "Int16", "value": 1 },
+		"rStopMaterial": { "type": "Double", "value": 1.5 },
+		"iSendPosition": { "type": "Int16", "value": 1 },
+		"iCellstate": { "type": "Int16", "value": 1 },
+		"iTimeout": { "type": "Int16", "value": 1 },
+		"inCrease": { "type": "Int16", "value": 1 },
+		"deCrease": { "type": "Int16", "value": 1 }
 	},
 	"hearts": {
-		"iCCDHeart": { "interval": 2000 }
+		"iCCDHeart": { "data1": 0, "data2": 1, "interval": 2000 }
 	},
-	"listen": {
-		"param1": { "iState": 1, "iWarning": 1 },
-		"param2": { "iWarning": 1, "rStopMaterial": 1.5 },
-		"param3": { "iState": 0, "iWarning": 0 }
+	"listens": {
+		"iState": [
+			{ "data": 1, "change": { "param": "iWarning", "value": 1 } },
+			{ "data": 0, "change": { "param": "iWarning", "value": 0 } }
+		],
+		"iWarning": [
+			{ "data": 1, "change": { "param": "rStopMaterial", "value": 1.5 } }
+		]
 	},
 	"increase": {
-		"inCrease": { "interval": 1000 }
+		"inCrease": { "data": 1, "interval": 1000 }
 	},
 	"decrease": {
-		"decrease": { "interval": 1000 }
+		"decrease": { "data": 1, "interval": 1000 }
 	}
 }
