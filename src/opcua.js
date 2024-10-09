@@ -151,6 +151,10 @@ class MockOPCUA {
 	 */
 	heartBeat() {
 		for (let heart in this.heartBeats) {
+      if(!this.mockParams[heart]) {
+        console.log(`心跳参数 ${heart} 未初始化`)
+        continue
+      }
 			setInterval(() => {
 				if (this.mockParams[heart].value == this.heartBeats[heart].data1)
 					this.mockParams[heart].value = this.heartBeats[heart].data2;
@@ -168,6 +172,10 @@ class MockOPCUA {
 			this.listens[listen].forEach((param) => {
         // 如果改变的值 == 规则列表中的值
 				if (param.data == this.mockParams[listen].value) {
+          if(!this.mockParams[param.change.param]) {
+            console.log(`监听 ${listen} = ${this.mockParams[listen].value} 时，改变 ${param.change.param} 的变量未初始化`)
+            return
+          }
           // 触发更改其他值
 					this.mockParams[param.change.param].value = param.change.value;
           // 更新监听缓存值
