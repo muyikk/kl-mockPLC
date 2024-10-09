@@ -1,17 +1,9 @@
-// import {
-// 	OPCUAServer,
-// 	Variant,
-// 	DataType,
-// 	StatusCodes,
-// 	makeNodeId,
-// } from "node-opcua";
 const EventEmitter = require("events");
 const {
 	OPCUAServer,
 	Variant,
 	DataType,
 	StatusCodes,
-	makeNodeId,
 } = require(`node-opcua`);
 class MockOPCUA {
 	event;
@@ -21,8 +13,8 @@ class MockOPCUA {
 	listenList; // 监听缓存值
 	listens; // 监听设置
 	heartBeats; // 心跳设置
-	increase; // 递增设置
-	decrease; // 递减设置
+	increaseList; // 递增设置
+	decreaseList; // 递减设置
 	constructor(config) {
 		this.event = new EventEmitter();
 		this.port = Number(config.port);
@@ -31,8 +23,8 @@ class MockOPCUA {
 		this.listenList = this.getListenList(config.listens);
 		this.listens = config.listens;
 		this.heartBeats = config.hearts;
-		this.increase = config.increase;
-		this.decrease = config.decrease;
+		this.increaseList = config.increase;
+		this.decreaseList = config.decrease;
 		this.initServer();
 	}
 	/**
@@ -73,8 +65,8 @@ class MockOPCUA {
 
 		// 启动心跳
 		this.heartBeat();
-		// 启动监听
-		// this.listen()
+		this.increase()
+		this.decrease()
 	}
 
 	/**
@@ -184,6 +176,27 @@ class MockOPCUA {
 			});
 		}
 	}
+
+  /**
+   * 递增变量初始化
+   */
+  increase() {
+    for(let param in this.increaseList) {
+      setInterval(() => {
+        this.mockParams[param].value += this.increaseList[param].tolerance
+      }, this.increaseList[param].interval);
+    }
+  }
+  /**
+   * 递减变量初始化
+   */
+  decrease() {
+    for(let param in this.decreaseList) {
+      setInterval(() => {
+        this.mockParams[param].value -= this.decreaseList[param].tolerance
+      }, this.decreaseList[param].interval);
+    }
+  }
 }
 
 module.exports = MockOPCUA;

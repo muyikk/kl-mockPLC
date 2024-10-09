@@ -11,7 +11,7 @@
 		"deCrease": { "type": "Int16", "value": 1 }
 	},
 	"hearts": {
-		"aaa": { "data1": 0, "data2": 1, "interval": 2000 }
+		"iCCDHeart": { "data1": 0, "data2": 1, "interval": 2000 }
 	},
 	"listens": {
 		"iState": [
@@ -23,9 +23,9 @@
 		]
 	},
 	"increase": {
-		"inCrease": { "data": 1, "interval": 1000 }
+		"inCrease": { "tolerance": 1, "interval": 1000 }
 	},
 	"decrease": {
-		"decrease": { "data": 1, "interval": 1000 }
+		"deCrease": { "tolerance": 1, "interval": 1000 }
 	}
 }
