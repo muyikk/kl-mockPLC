@@ -1,9 +1,7 @@
 const fs = require(`fs-extra`)
 const {parse} = require(`json5`)
-const MockOPCUA = require(`./opcua.js`)
-// import json5 from "json5";
-// import MockOPCUA from "./opcua.js"
-// const MockOPCUA = require("./opcua")
+const MockOPCUA = require(`./src/opcua.js`)
+const path = require(`path`)
 
 // 获取config地址
 const isPkg = typeof process.pkg !== "undefined";
@@ -13,15 +11,16 @@ if (isPkg) {
 	configPath = rootDir + "\\mockPLC.json";
 	logPath = rootDir + "\\log\\";
 } else {
-	configPath = __dirname.replace(/src$/, "mockPLC.json");
-	logPath = __dirname.replace(/src$/, "log\\");
+	configPath = __dirname+"\\mockPLC.json";
+	logPath = __dirname+"\\log\\";
 }
 console.log("configPath:", configPath);
 console.log("logPath:", logPath);
 fs.existsSync(logPath) ? null : fs.mkdirSync(logPath);
+console.log(`\n`)
 
 // 读取config文件
 const config = parse(fs.readFileSync(configPath, "utf-8"));
-console.log(config);
+console.log(`mockPLC.json:\n`, config);
 
 const server = new MockOPCUA(config)
