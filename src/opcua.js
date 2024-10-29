@@ -1,4 +1,3 @@
-const EventEmitter = require("events");
 const {
 	OPCUAServer,
 	Variant,
@@ -6,7 +5,6 @@ const {
 	StatusCodes,
 } = require(`node-opcua`);
 class MockOPCUA {
-	event;
 	port; // 端口
 	structure; // 结构体名称
 	mockParams; // 模拟变量
@@ -16,7 +14,6 @@ class MockOPCUA {
 	increaseList; // 递增设置
 	decreaseList; // 递减设置
 	constructor(config) {
-		this.event = new EventEmitter();
 		this.port = Number(config.port);
 		this.structure = config.structure;
 		this.mockParams = config.params;

@@ -1,0 +1,31 @@
+{
+	"protocol": "modbus",
+	"port": "4334",
+	"structure": "stCCD1",
+	"params": {
+		"iCCDHeart": { "addr": "1119", "type": "short", "value": 1 },
+		"iState": { "addr": "1121", "type": "short", "value": 1 },
+		"ichangeParam": { "addr": "1120", "type": "short", "value": 1 },
+		"rchangeParam": { "addr": "1122", "type": "float", "value": 1.5 },
+		"inCrease": { "addr": "580", "type": "short", "value": 1 },
+		"deCrease": { "addr": "7002", "type": "short", "value": 1 }
+	},
+	"hearts": {
+		"iCCDHeart": { "data1": 0, "data2": 1, "interval": 2000 }
+	},
+	"listens": {
+		"iState": [
+			{ "data": 1, "change": { "param": "ichangeParam", "value": 1 } },
+			{ "data": 0, "change": { "param": "ichangeParam", "value": 0 } }
+		],
+		"ichangeParam": [
+			{ "data": 1, "change": { "param": "rchangeParam", "value": 1.5 } }
+		]
+	},
+	"increase": {
+		"inCrease": { "tolerance": 1, "interval": 1000 }
+	},
+	"decrease": {
+		"deCrease": { "tolerance": 1, "interval": 1000 }
+	}
+}
