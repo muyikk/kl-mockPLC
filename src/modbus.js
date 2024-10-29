@@ -137,7 +137,7 @@ class MockModbusTCP {
 
 	/**
 	 * 初始化模拟寄存器中的参数
-	 * @returns 
+	 * @returns
 	 */
 	initParam() {
 		let res = {};
@@ -164,6 +164,12 @@ class MockModbusTCP {
 		return res;
 	}
 
+	/**
+	 * 将 float型 转化为 IEEE 754 单精度浮点数
+	 * @param {number} floatValue float型的值
+	 * @param {number} swap 是否需要交换高低位
+	 * @returns
+	 */
 	float2IEEE(floatValue, swap) {
 		// 创建一个 4 字节的缓冲区来存储浮点数
 		let buffer = Buffer.alloc(4);
